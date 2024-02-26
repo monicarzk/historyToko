@@ -1,13 +1,13 @@
-package com.history_toko.caringin;
+package com.history_toko.toko;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CaringinApplication {
+public class TokoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CaringinApplication.class, args);
+		SpringApplication.run(TokoApplication.class, args);
 	}
 
 }
