@@ -1,10 +1,10 @@
-package com.history_toko.toko.dao;
+package com.history_toko.toko.service;
 
 import com.history_toko.toko.entity.History;
 
 import java.util.List;
 
-public interface HistoryDAO {
+public interface HistoryService {
 
     List<History> findAll();
 

@@ -27,4 +27,29 @@ public class HistoryDAOJpaImpl implements HistoryDAO {
 
         return histories;
     }
+
+    @Override
+    public History findByID(int theId) {
+
+        History theHistory = entityManager.find(History.class, theId);
+
+        return theHistory;
+    }
+
+    @Override
+    public History save(History theHistory) {
+
+        History dbHistory = entityManager.merge(theHistory);
+
+        return dbHistory;
+    }
+
+    @Override
+    public void deleteById(int theId) {
+
+        History theHistory = entityManager.find(History.class, theId);
+
+        entityManager.remove(theHistory);
+
+    }
 }
