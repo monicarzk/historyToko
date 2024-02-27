@@ -1,6 +1,5 @@
 package com.history_toko.toko.rest;
 
-import com.history_toko.toko.dao.HistoryDAO;
 import com.history_toko.toko.entity.History;
 import com.history_toko.toko.service.HistoryService;
 import org.springframework.web.bind.annotation.*;
