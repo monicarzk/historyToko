@@ -24,8 +24,8 @@ public class HistoryServiceImpl implements HistoryService {
     }
 
     @Override
-    public History findByID(int theId) {
-        return historyDAO.findByID(theId);
+    public History findById(int theId) {
+        return historyDAO.findById(theId);
     }
 
     @Transactional

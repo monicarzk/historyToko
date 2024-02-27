@@ -29,7 +29,7 @@ public class HistoryDAOJpaImpl implements HistoryDAO {
     }
 
     @Override
-    public History findByID(int theId) {
+    public History findById(int theId) {
 
         History theHistory = entityManager.find(History.class, theId);
 

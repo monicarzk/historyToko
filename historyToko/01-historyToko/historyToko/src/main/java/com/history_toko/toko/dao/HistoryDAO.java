@@ -8,7 +8,7 @@ public interface HistoryDAO {
 
     List<History> findAll();
 
-    History findByID(int theId);
+    History findById(int theId);
 
     History save(History theHistory);
 

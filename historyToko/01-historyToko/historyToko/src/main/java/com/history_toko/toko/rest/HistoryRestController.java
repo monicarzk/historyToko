@@ -25,7 +25,7 @@ public class HistoryRestController {
     @GetMapping("/histories/{historyId}")
     public History getHistory(@PathVariable int historyId) {
 
-        History theHistory = historyService.findByID(historyId);
+        History theHistory = historyService.findById(historyId);
 
         if (theHistory == null) {
             throw new RuntimeException("History id not found - " + historyId);
@@ -55,7 +55,7 @@ public class HistoryRestController {
     @DeleteMapping("/histories/{historyId}")
     public String deleteHistory(@PathVariable int historyId) {
 
-        History tempHistory = historyService.findByID(historyId);
+        History tempHistory = historyService.findById(historyId);
 
         if (tempHistory == null) {
             throw new RuntimeException("History id not found - " + historyId);
