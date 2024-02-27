@@ -13,6 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class UserLoginSecurityConfig {
 
+
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
 
@@ -37,6 +38,7 @@ public class UserLoginSecurityConfig {
         return new InMemoryUserDetailsManager(admin, user, owner);
 
     }
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
