@@ -5,9 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -20,9 +17,18 @@ public class UserLoginSecurityConfig {
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
 
-        return new JdbcUserDetailsManager(dataSource);
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+
+        jdbcUserDetailsManager.setUsersByUsernameQuery(
+                "select username, password, active from user_login where username=?");
+
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
+                "select username, role from roles where username=?");
+
+        return jdbcUserDetailsManager;
 
     }
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -42,32 +48,5 @@ public class UserLoginSecurityConfig {
 
         return http.build();
     }
-
-    /*
-    @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
-
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password("{noop}root")
-                .roles("ADMIN", "USER", "OWNER")
-                .build();
-
-        UserDetails user = User.builder()
-                .username("user")
-                .password("{noop}root")
-                .roles("USER", "OWNER")
-                .build();
-
-        UserDetails owner = User.builder()
-                .username("owner")
-                .password("{noop}root")
-                .roles("OWNER")
-                .build();
-
-        return new InMemoryUserDetailsManager(admin, user, owner);
-
-    }
- */
 
 }
