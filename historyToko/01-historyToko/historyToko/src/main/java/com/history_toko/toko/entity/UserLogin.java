@@ -1,5 +1,6 @@
 package com.history_toko.toko.entity;
 
+import java.lang.String;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,7 +8,6 @@ import jakarta.persistence.*;
 public class UserLogin {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "username")
     private String username;
 
