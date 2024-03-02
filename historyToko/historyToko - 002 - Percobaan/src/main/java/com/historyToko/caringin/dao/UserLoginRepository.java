@@ -9,4 +9,8 @@ public interface UserLoginRepository extends JpaRepository<UserLogin, String> {
 
     // that's it . . . NO ANY CODE :-)
 
+    // JpaRepository adalah bagian dari Spring Data JPA yang menyediakan
+    // berbagai metode bawaan untuk melakukan operasi CRUD (Create, Read, Update, Delete)
+    // pada entity dalam basis data
+
 }

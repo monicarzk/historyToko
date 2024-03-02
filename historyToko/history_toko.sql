@@ -4,7 +4,7 @@ USE `history_toko`;
 DROP TABLE IF EXISTS `history_toko`;
 
 CREATE TABLE `history` (
-    date DATE DEFAULT (DATE(NOW())) PRIMARY KEY,
+    date DATE PRIMARY KEY,
     description VARCHAR(255),
     price DECIMAL(10, 2)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `roles`;
 DROP TABLE IF EXISTS `user_login`;
 
 --
--- Table structure for table `users`
+-- Table structure for table `user_login`
 --
 
 CREATE TABLE `user_login` (
@@ -32,7 +32,7 @@ CREATE TABLE `user_login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Inserting data for table `users`
+-- Inserting data for table `user_login`
 --
 -- NOTE: The passwords are encrypted using BCrypt
 --

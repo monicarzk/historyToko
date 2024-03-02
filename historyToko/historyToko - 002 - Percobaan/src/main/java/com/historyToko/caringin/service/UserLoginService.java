@@ -6,11 +6,19 @@ import java.util.List;
 
 public interface UserLoginService {
 
+
+    // Metode untuk mendapatkan daftar semua entity UserLogin
     List<UserLogin> findAll();
 
+
+    // Metode untuk menemukan entity UserLogin berdasarkan username
     UserLogin findByUsername(String theUsername);
 
+
+    // Metode untuk menyimpan atau memperbarui entity UserLogin
     UserLogin save(UserLogin theUserLogin);
 
+
+    // Metode untuk menghapus entity UserLogin
     void deleteByUsername(String theUsername);
 }
