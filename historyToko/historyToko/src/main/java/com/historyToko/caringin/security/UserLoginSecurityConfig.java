@@ -17,7 +17,12 @@ import javax.sql.DataSource;
 public class UserLoginSecurityConfig {
 
 
-    // Metode untuk membuat dan mengkonfigurasi UserDetailsManager.
+    // @Bean anotasi untuk menunjukkan bahwa suatu metode menghasilkan sebuah bean yang akan dikelola oleh kontainer Spring
+    // Metode untuk membuat dan mengkonfigurasi UserDetailsManager
+    // seperti menambahkan pengguna baru, menghapus pengguna, dan lain-lain
+    // DataSource adalah objek yang menyediakan koneksi ke basis data
+    // JDBC (Java Database Connectivity)
+
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
 
@@ -34,17 +39,21 @@ public class UserLoginSecurityConfig {
     }
 
 
+    // @Bean anotasi konfigurasi untuk filter keamanan Spring Security
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+        // ini adalah metode yang memulai konfigurasi untuk mengatur otorisasi pada permintaan HTTP
         http.authorizeHttpRequests(configurer ->
                 configurer
+                        // menentukan aturan otorisais ke endpoint /api/histories
                         .requestMatchers(HttpMethod.GET, "/api/histories").hasRole("OWNER")
                         .requestMatchers(HttpMethod.GET, "/api/histories/**").hasRole("OWNER")
                         .requestMatchers(HttpMethod.POST, "/api/histories").hasRole("USER")
                         .requestMatchers(HttpMethod.PUT, "/api/histories").hasRole("USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/histories/**").hasRole("ADMIN")
 
+                        // menentukan aturan otorisais ke endpoint /api/users
                         .requestMatchers(HttpMethod.GET, "/api/users").hasRole("OWNER")
                         .requestMatchers(HttpMethod.GET, "/api/users/**").hasRole("OWNER")
                         .requestMatchers(HttpMethod.POST, "/api/users").hasRole("USER")
@@ -52,8 +61,11 @@ public class UserLoginSecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
         );
 
+        // mengaktifkan autentikasi dasar HTTP
         http.httpBasic(Customizer.withDefaults());
 
+        // menonaktifkan perlindungan CSRF
+        // CSRF adalah serangan yang memanfaatkan kepercayaan otentikasi yang ada antara pengguna dan aplikasi
         http.csrf(csrf -> csrf.disable());
 
         return http.build();
