@@ -2,7 +2,6 @@ package com.historyToko.caringin.service;
 
 import com.historyToko.caringin.entity.History;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface HistoryService {
@@ -13,7 +12,7 @@ public interface HistoryService {
 
 
     // Metode untuk menemukan entity History berdasarkan tanggal tertentu (theDate)
-    History findByDate(LocalDate theDate);
+    History findById(int theId);
 
 
     // Metode untuk menyimpan atau memperbarui entity History
@@ -21,5 +20,5 @@ public interface HistoryService {
 
 
     // Metode untuk menghapus entity History
-    void deleteByDate(LocalDate theDate);
+    void deleteById(int theId);
 }

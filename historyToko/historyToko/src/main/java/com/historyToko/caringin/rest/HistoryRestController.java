@@ -3,12 +3,9 @@ package com.historyToko.caringin.rest;
 import com.historyToko.caringin.entity.History;
 import com.historyToko.caringin.service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 
 // @RestController anotasi yang menandakan bahwa kelas ini adalah pengendali RESTful API
 // @RequestMapping anotasi untuk menetapkan URL
@@ -41,13 +38,13 @@ public class HistoryRestController {
     // @GetMapping anotasi untuk menetapkan endpoint URL
     // metode untuk menangani permintaan HTTP GET yang datang ke endpoint /api/histories/{historyDate}
     // mencari riwayat berdasarkan tanggal yang diberikan,
-    @GetMapping("/histories/{historyDate}")
-    public History getHistory(@PathVariable LocalDate historyDate) {
+    @GetMapping("/histories/{historyId}")
+    public History getHistory(@PathVariable int historyId) {
 
-        History theHistory = historyService.findByDate(historyDate);
+        History theHistory = historyService.findById(historyId);
 
         if (theHistory == null) {
-            throw new RuntimeException("History date not found - " + historyDate);
+            throw new RuntimeException("History id not found - " + historyId);
         }
 
         return theHistory;
@@ -59,6 +56,8 @@ public class HistoryRestController {
     // menyimpan riwayat yang diberikan
     @PostMapping("/histories")
     public History addHistory(@RequestBody History theHistory) {
+
+        theHistory.setId(0);
 
         History dbHistory = historyService.save(theHistory);
 
@@ -81,19 +80,18 @@ public class HistoryRestController {
     // @DeleteMapping anotasi untuk menetapkan endpoint URL
     // metode untuk menangani permintaan HTTP DELETE yang datang ke endpoint /api/histories/{historyDate}
     // mencari dan menghapus riwayat yang sesuai dengan tanggal yang diberikan
-    @DeleteMapping("/histories/{historyDate}")
-    public String deleteHistory(@PathVariable @DateTimeFormat
-            (iso = DateTimeFormat.ISO.DATE) LocalDate historyDate) {
+    @DeleteMapping("/histories/{historyId}")
+    public String deleteHistory(@PathVariable int historyId) {
 
-        History tempHistory = historyService.findByDate(historyDate);
+        History tempHistory = historyService.findById(historyId);
 
         if (tempHistory == null) {
-            throw new RuntimeException("History date not found - " + historyDate);
+            throw new RuntimeException("History id not found - " + historyId);
         }
 
-        historyService.deleteByDate(historyDate);
+        historyService.deleteById(historyId);
 
-        return "Deleted history date - " + historyDate;
+        return "Deleted history id - " + historyId;
     }
 }
 

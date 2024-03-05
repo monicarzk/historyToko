@@ -1,9 +1,6 @@
 package com.historyToko.caringin.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -17,6 +14,10 @@ public class History {
     // @Id anotasi yang menandakan primary key
     // @Column anotasi yang mengonfigurasi kolom db
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
     @Column(name = "date")
     private LocalDate date;
 
@@ -41,10 +42,17 @@ public class History {
         this.price = price;
     }
 
-
     // getters and setters
     // getters untuk mengakses nilai dari atribut objek
     // setters untuk mengubah nilai dari atribut objek
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public LocalDate getDate() {
         return date;
     }
@@ -69,13 +77,13 @@ public class History {
         this.price = price;
     }
 
-
     // toString
     // metode ini memudahkan untuk debugging, logging, dan pengembangan aplikasi secara umum
     @Override
     public String toString() {
         return "History{" +
-                "date=" + date +
+                "id=" + id +
+                ", date=" + date +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 '}';

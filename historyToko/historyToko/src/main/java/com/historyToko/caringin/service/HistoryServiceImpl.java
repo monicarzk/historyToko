@@ -5,7 +5,6 @@ import com.historyToko.caringin.entity.History;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,8 +37,8 @@ public class HistoryServiceImpl implements HistoryService {
     // @Override anotasi yang menandakan nama yang sama dari interface
     // metode untuk mencari entity History berdasarkan tanggal yang diberikan
     @Override
-    public History findByDate(LocalDate theDate) {
-        Optional<History> result = historyRepository.findById(theDate);
+    public History findById(int theId) {
+        Optional<History> result = historyRepository.findById(theId);
 
         History theHistory = null;
 
@@ -47,7 +46,7 @@ public class HistoryServiceImpl implements HistoryService {
             theHistory = result.get();
         }
         else {
-            throw new RuntimeException("Did not find History date - " + theDate);
+            throw new RuntimeException("Did not find History id - " + theId);
         }
 
         return theHistory;
@@ -66,8 +65,8 @@ public class HistoryServiceImpl implements HistoryService {
     // @Override anotasi yang menandakan nama yang sama dari interface
     // metode untuk menghapus entity History berdasarkan tanggal yang diberikan
     @Override
-    public void deleteByDate(LocalDate theDate) {
-        historyRepository.deleteById(theDate);
+    public void deleteById(int theId) {
+        historyRepository.deleteById(theId);
 
     }
 }
