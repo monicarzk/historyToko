@@ -12,7 +12,7 @@ public interface UserLoginService {
 
 
     // Metode untuk menemukan entity UserLogin berdasarkan username
-    UserLogin findByUsername(String theUsername);
+    UserLogin findById(int theId);
 
 
     // Metode untuk menyimpan atau memperbarui entity UserLogin
@@ -20,5 +20,5 @@ public interface UserLoginService {
 
 
     // Metode untuk menghapus entity UserLogin
-    void deleteByUsername(String theUsername);
+    void deleteById(int theId);
 }

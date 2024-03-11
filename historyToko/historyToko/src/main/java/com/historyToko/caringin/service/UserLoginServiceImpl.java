@@ -37,8 +37,8 @@ public class UserLoginServiceImpl implements UserLoginService{
     // @Override anotasi yang menandakan nama yang sama dari interface
     // metode untuk mencari entity UserLogin berdasarkan username
     @Override
-    public UserLogin findByUsername(String theUsername) {
-        Optional<UserLogin> result = userLoginRepository.findById(theUsername);
+    public UserLogin findById(int theId) {
+        Optional<UserLogin> result = userLoginRepository.findById(theId);
 
         UserLogin theUserLogin = null;
 
@@ -46,7 +46,7 @@ public class UserLoginServiceImpl implements UserLoginService{
             theUserLogin = result.get();
         }
         else {
-            throw new RuntimeException("Did not find user_login username - " + theUsername);
+            throw new RuntimeException("Did not find user_login id - " + theId);
         }
 
         return theUserLogin;
@@ -64,8 +64,8 @@ public class UserLoginServiceImpl implements UserLoginService{
     // @Override anotasi yang menandakan nama yang sama dari interface
     // metode untuk menghapus entity UserLogin berdasarkan username
     @Override
-    public void deleteByUsername(String theUsername) {
-        userLoginRepository.deleteById(theUsername);
+    public void deleteById(int theId) {
+        userLoginRepository.deleteById(theId);
 
     }
 }

@@ -38,13 +38,13 @@ public class UserLoginRestController {
     // @GetMapping anotasi untuk menetapkan endpoint URL
     // metode untuk menangani permintaan HTTP GET yang datang ke endpoint /api/users/{userUsername}
     // mencari data login pengguna berdasarkan nama pengguna yang diberikan
-    @GetMapping("/users/{userUsername}")
-    public UserLogin getUserLogin(@PathVariable String userUsername) {
+    @GetMapping("/users/{userId}")
+    public UserLogin getUserLogin(@PathVariable int userId) {
 
-        UserLogin theUserLogin = userLoginService.findByUsername(userUsername);
+        UserLogin theUserLogin = userLoginService.findById(userId);
 
         if (theUserLogin == null) {
-            throw new RuntimeException("UserLogin username not found - " + userUsername);
+            throw new RuntimeException("UserLogin id not found - " + userId);
 
         }
 
@@ -57,6 +57,8 @@ public class UserLoginRestController {
     // menyimpan data login pengguna yang diberikan
     @PostMapping("/users")
     public UserLogin addUserLogin(@RequestBody UserLogin theUserLogin) {
+
+        theUserLogin.setId(0);
 
         UserLogin dbUserLogin = userLoginService.save(theUserLogin);
 
@@ -80,17 +82,17 @@ public class UserLoginRestController {
     // @DeleteMapping anotasi untuk menetapkan endpoint URL
     // metode untuk menangani permintaan HTTP DELETE yang datang ke endpoint /api/users/{userUser}
     // mencari dan menghapus data login pengguna berdasarkan nama pengguna yang diberikan
-    @DeleteMapping("/users/{userUser}")
-    public String deleteUserLogin(@PathVariable String userUser) {
+    @DeleteMapping("/users/{userId}")
+    public String deleteUserLogin(@PathVariable int userId) {
 
-        UserLogin tempUserLogin = userLoginService.findByUsername(userUser);
+        UserLogin tempUserLogin = userLoginService.findById(userId);
 
         if (tempUserLogin == null) {
-            throw new RuntimeException("UserLogin username not found - " + userUser);
+            throw new RuntimeException("UserLogin id not found - " + userId);
         }
 
-        userLoginService.deleteByUsername(userUser);
+        userLoginService.deleteById(userId);
 
-        return "Deleted user_login id - " + userUser;
+        return "Deleted user_login id - " + userId;
     }
 }

@@ -1,9 +1,6 @@
 package com.historyToko.caringin.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 // @Entity anotasi yang menandakan kelas adalah entity JPA
 // @Table anotasi yang mengonfigurasi nama tabel dalam db
@@ -15,6 +12,10 @@ public class UserLogin {
     // @Id anotasi yang menandakan primary key
     // @Column anotasi yang mengonfigurasi kolom db
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
     @Column(name = "username")
     private String username;
 
@@ -40,9 +41,18 @@ public class UserLogin {
     }
 
 
+
     // getters and setters
     // getters untuk mengakses nilai dari atribut objek
     // setters untuk mengubah nilai dari atribut objek
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -68,12 +78,14 @@ public class UserLogin {
     }
 
 
+
     // toString
     // metode ini memudahkan untuk debugging, logging, dan pengembangan aplikasi secara umum
     @Override
     public String toString() {
         return "UserLogin{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", active=" + active +
                 '}';
