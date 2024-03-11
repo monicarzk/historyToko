@@ -4,16 +4,11 @@ USE `history_toko`;
 DROP TABLE IF EXISTS `history_toko`;
 
 CREATE TABLE `history` (
-    date DATE PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE,
     description VARCHAR(255),
     price DECIMAL(10, 2)
-)ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `history` VALUES 
-	('2024-02-26','Beras 1/2 Kg','180000'),
-	('2024-02-27','Gas 5 biji','200000'),
-	('2024-02-28','Minyak kelapa 8 kg','200000'),
-	('2024-02-29','Keripik darih 1 pak','50000');
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
     
     
 USE `history_toko`;
@@ -26,9 +21,11 @@ DROP TABLE IF EXISTS `user_login`;
 --
 
 CREATE TABLE `user_login` (
-  `username` varchar(50) PRIMARY KEY DEFAULT 'default_username',
+   id INT AUTO_INCREMENT PRIMARY KEY,
+  `username` varchar(50) NOT NULL,
   `password` char(68) NOT NULL,
-  `active` tinyint NOT NULL
+  `active` tinyint NOT NULL,
+   INDEX `idx_username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -43,9 +40,9 @@ CREATE TABLE `user_login` (
 
 INSERT INTO `user_login`
 VALUES
-('owner','{bcrypt}$2a$10$qankMJRqLtyirVGoy.6MkOCw6sciIU.VWwGNXIuuhhEGddS/V4LbO',1),
-('user','{bcrypt}$2a$10$qankMJRqLtyirVGoy.6MkOCw6sciIU.VWwGNXIuuhhEGddS/V4LbO',1),
-('admin','{bcrypt}$2a$10$qankMJRqLtyirVGoy.6MkOCw6sciIU.VWwGNXIuuhhEGddS/V4LbO',1);
+(1,'owner','{bcrypt}$2a$10$qankMJRqLtyirVGoy.6MkOCw6sciIU.VWwGNXIuuhhEGddS/V4LbO',1),
+(2,'user','{bcrypt}$2a$10$qankMJRqLtyirVGoy.6MkOCw6sciIU.VWwGNXIuuhhEGddS/V4LbO',1),
+(3,'admin','{bcrypt}$2a$10$qankMJRqLtyirVGoy.6MkOCw6sciIU.VWwGNXIuuhhEGddS/V4LbO',1);
 
 --
 -- Table structure for table `roles`
