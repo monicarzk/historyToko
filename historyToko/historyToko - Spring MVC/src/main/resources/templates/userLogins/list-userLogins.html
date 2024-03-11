@@ -10,46 +10,53 @@
 </head>
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h3>UserLogin Toko Caringin</h3>
-    <hr>
+        <h3>UserLogin Toko Caringin</h3>
+        <hr>
 
-    <!-- Add a button -->
-    <a th:href="@{/users/showFormForAdd}"
-       class="btn btn-primary btn-sm mb-3">
-        Add UserLogin
-    </a>
+        <!-- Add a button -->
+        <a th:href="@{/users/showFormForAdd}"
+           class="btn btn-primary btn-sm mb-3">
+            Add UserLogin
+        </a>
 
-    <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-        <tr>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Active</th>
-            <th>Action</th>
-        </tr>
-        </thead>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-        <tbody>
-        <tr th:each="tempUserLogin : ${userLogins}">
+            <tbody>
+                <tr th:each="tempUserLogin : ${userLogins}">
 
-            <td th:text="${tempUserLogin.username}" />
-            <td th:text="${tempUserLogin.password}" />
-            <td th:text="${tempUserLogin.active}" />
-            <!-- Add update button Link -->
-            <td>
-                <a th:href="@{/users/showFormForUpdate(userLoginId=${tempUserLogin.id})}"
-                   class="btn btn-info btn-sm">
-                    Update
-                </a>
-            </td>
+                    <td th:text="${tempUserLogin.username}" />
+                    <td th:text="${tempUserLogin.password}" />
+                    <td th:text="${tempUserLogin.active}" />
+                    <!-- Add update button Link -->
+                    <td>
+                        <a th:href="@{/users/showFormForUpdate(userLoginId=${tempUserLogin.id})}"
+                           class="btn btn-info btn-sm">
+                            Update
+                        </a>
 
-        </tr>
-        </tbody>
-    </table>
+                        <!-- Add "delete" button/link -->
+                        <a th:href="@{/users/delete(userLoginId=${tempUserLogin.id})}"
+                            class="btn btn-danger btn-sm"
+                            onclick="if (!(confirm('Apa kamu yakin akan menghapus nama pengguna ini?'))) return false">
+                            Delete
+                        </a>
+                    </td>
 
-</div>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
 
 </body>
 </html>

@@ -56,5 +56,12 @@ public class HistoryController {
         return "redirect:/histories/list";
     }
 
+    @GetMapping("/delete")
+    public String delete(@RequestParam("historyId") int theId){
+
+        historyService.deleteById(theId);
+
+        return "redirect:/histories/list";
+    }
 
 }

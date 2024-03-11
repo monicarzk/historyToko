@@ -56,4 +56,12 @@ public class UserLoginController {
 
         return "redirect:/users/list";
     }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("userLoginId") int theId){
+
+        userLoginService.deleteById(theId);
+
+        return "redirect:/users/list";
+    }
 }
