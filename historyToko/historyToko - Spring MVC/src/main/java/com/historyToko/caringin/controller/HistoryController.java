@@ -4,10 +4,7 @@ import com.historyToko.caringin.entity.History;
 import com.historyToko.caringin.service.HistoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +38,16 @@ public class HistoryController {
         return "histories/history-form";
     }
 
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("historyId") int theId, Model theModel) {
+
+        History theHistory = historyService.findById(theId);
+
+        theModel.addAttribute("history", theHistory);
+
+        return "histories/history-form";
+    }
+
     @PostMapping("/save")
     public String saveHistory(@ModelAttribute("history") History theHistory) {
 
@@ -48,4 +55,6 @@ public class HistoryController {
 
         return "redirect:/histories/list";
     }
+
+
 }

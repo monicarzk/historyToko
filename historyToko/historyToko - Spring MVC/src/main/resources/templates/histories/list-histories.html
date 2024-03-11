@@ -31,6 +31,7 @@
                 <th>Date</th>
                 <th>Description</th>
                 <th>Price</th>
+                <th>Action</th>
             </tr>
         </thead>
 
@@ -40,6 +41,13 @@
                 <td th:text="${tempHistory.date}" />
                 <td th:text="${tempHistory.description}" />
                 <td th:text="${tempHistory.price}" />
+                <!-- Add update button Link -->
+                <td>
+                    <a th:href="@{/histories/showFormForUpdate(historyId=${tempHistory.id})}"
+                        class="btn btn-info btn-sm">
+                        Update
+                    </a>
+                </td>
 
             </tr>
         </tbody>

@@ -27,6 +27,7 @@
             <th>Username</th>
             <th>Password</th>
             <th>Active</th>
+            <th>Action</th>
         </tr>
         </thead>
 
@@ -36,6 +37,13 @@
             <td th:text="${tempUserLogin.username}" />
             <td th:text="${tempUserLogin.password}" />
             <td th:text="${tempUserLogin.active}" />
+            <!-- Add update button Link -->
+            <td>
+                <a th:href="@{/users/showFormForUpdate(userLoginId=${tempUserLogin.id})}"
+                   class="btn btn-info btn-sm">
+                    Update
+                </a>
+            </td>
 
         </tr>
         </tbody>
