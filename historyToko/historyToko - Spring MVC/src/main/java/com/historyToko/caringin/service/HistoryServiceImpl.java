@@ -30,7 +30,7 @@ public class HistoryServiceImpl implements HistoryService {
     // metode findAll() ini bertanggung jawab untuk mengambil semua entity History dari database melalui repository
     @Override
     public List<History> findAll() {
-        return historyRepository.findAll();
+        return historyRepository.findAllByOrderByDateAsc();
     }
 
 

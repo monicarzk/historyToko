@@ -30,7 +30,7 @@ public class UserLoginServiceImpl implements UserLoginService{
     // metode findAll() ini bertanggung jawab untuk mengambil semua entity UserLogin dari database melalui repository
     @Override
     public List<UserLogin> findAll() {
-        return userLoginRepository.findAll();
+        return userLoginRepository.findAllByOrderByUsernameAsc();
     }
 
 
