@@ -59,6 +59,20 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/api/users").hasRole("USER")
                         .requestMatchers(HttpMethod.PUT, "/api/users").hasRole("USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
+
+                        // menentukan aturan otorisais ke endpoint /histories/list
+                        .requestMatchers(HttpMethod.GET, "/histories/list").hasRole("OWNER")
+                        .requestMatchers(HttpMethod.GET, "/histories/list/**").hasRole("OWNER")
+                        .requestMatchers(HttpMethod.POST, "/histories/list").hasRole("USER")
+                        .requestMatchers(HttpMethod.PUT, "/histories/list").hasRole("USER")
+                        .requestMatchers(HttpMethod.DELETE, "/histories/list/**").hasRole("ADMIN")
+
+                        // menentukan aturan otorisais ke endpoint /users/list
+                        .requestMatchers(HttpMethod.GET, "/users/list").hasRole("OWNER")
+                        .requestMatchers(HttpMethod.GET, "/users/list/**").hasRole("OWNER")
+                        .requestMatchers(HttpMethod.POST, "/users/list").hasRole("USER")
+                        .requestMatchers(HttpMethod.PUT, "/users/list").hasRole("USER")
+                        .requestMatchers(HttpMethod.DELETE, "/users/list/**").hasRole("ADMIN")
         );
 
         // mengaktifkan autentikasi dasar HTTP

@@ -60,20 +60,22 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.PUT, "/api/users").hasRole("USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
 
-                        // menentukan aturan otorisais ke endpoint /histories/list
-                        .requestMatchers(HttpMethod.GET, "/histories/list").hasRole("OWNER")
-                        .requestMatchers(HttpMethod.GET, "/histories/list/**").hasRole("OWNER")
-                        .requestMatchers(HttpMethod.POST, "/histories/list").hasRole("USER")
-                        .requestMatchers(HttpMethod.PUT, "/histories/list").hasRole("USER")
-                        .requestMatchers(HttpMethod.DELETE, "/histories/list/**").hasRole("ADMIN")
+                        .requestMatchers("/histories/list").hasRole("OWNER")
+                        .requestMatchers("/histories/list/**").hasRole("OWNER")
+                        .requestMatchers("/histories/showFormForAdd/").hasRole("USER")
+                        .requestMatchers("/histories/showFormForUpdate/").hasRole("USER")
+                        .requestMatchers("/histories/delete/**").hasRole("ADMIN")
+                        .anyRequest().authenticated()
 
-                        // menentukan aturan otorisais ke endpoint /users/list
-                        .requestMatchers(HttpMethod.GET, "/users/list").hasRole("OWNER")
-                        .requestMatchers(HttpMethod.GET, "/users/list/**").hasRole("OWNER")
-                        .requestMatchers(HttpMethod.POST, "/users/list").hasRole("USER")
-                        .requestMatchers(HttpMethod.PUT, "/users/list").hasRole("USER")
-                        .requestMatchers(HttpMethod.DELETE, "/users/list/**").hasRole("ADMIN")
-        );
+                )
+                .formLogin(form ->
+                        form
+                                .loginPage("/showMyLoginPage")
+                                .loginProcessingUrl("/authenticateTheUser")
+                                .permitAll()
+                )
+                .logout(logout -> logout.permitAll()
+                );
 
         // mengaktifkan autentikasi dasar HTTP
         http.httpBasic(Customizer.withDefaults());

@@ -19,6 +19,12 @@ public class UserLoginController {
         userLoginService = theUserLoginService;
     }
 
+    @GetMapping("/showLoginPageUsers")
+    public String showLoginPageUsers() {
+
+        return "userLogins/login-users";
+    }
+
     @GetMapping("/list")
     public String listUserLogins(Model theModel) {
 
