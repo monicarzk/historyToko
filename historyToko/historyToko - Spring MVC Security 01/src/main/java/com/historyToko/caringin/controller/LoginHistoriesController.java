@@ -9,7 +9,7 @@ public class LoginHistoriesController {
     @GetMapping("/showMyLoginPage")
     public String showMyLoginPage() {
 
-        return "histories/login-histories";
+        return "form-histories/index-histories";
     }
 
 }
